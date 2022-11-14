@@ -1,80 +1,37 @@
-const inquirer = require(`inquirer`);
+const Employee = require(`../lib/Employee`);
+const sampleEmployee = new Employee(`John`, 1, `john01@gmail.com`);
 
-class Employee {
-  constructor(name, id, email) {
-    this.name = name;
-    this.id = id;
-    this.email = email;
-  }
-  getName() {
-    inquirer.prompt([
-      {
-        type: `input`,
-        name: `name`,
-        message: `What is the team member's name?`,
-        validator: (userInput) => {
-          if (userInput) {
-            return true;
-          } else {
-            console.log(`Please enter the team member's name`);
-            return false;
-          }
-        },
-      },
-    ]);
-  }
-  getId() {
-    inquirer.prompt([
-      {
-        type: `input`,
-        name: `id`,
-        message: `What is the team member's id?`,
-        validator: (userInput) => {
-          if (userInput) {
-            return true;
-          } else {
-            console.log(`Please enter the team member's id`);
-            return false;
-          }
-        },
-      },
-    ]);
-  }
-  getEmail() {
-    inquirer.prompt([
-      {
-        type: `input`,
-        name: `email`,
-        message: `What is the team member's email?`,
-        validator: (userInput) => {
-          if (userInput) {
-            return true;
-          } else {
-            console.log(`Please enter the team member's email`);
-            return false;
-          }
-        },
-      },
-    ]);
-  }
-  getRole() {
-    inquirer.prompt([
-      {
-        type: `checkbox`,
-        name: `role`,
-        message: `What is the team member's role?`,
-        choices: [`Manager`, `Engineer`, `Intern`],
-        validator: (userInput) => {
-          if (userInput) {
-            return true;
-          } else {
-            console.log(`Please enter the team member's role`);
-            return false;
-          }
-        },
-      },
-    ]);
-  }
-}
+describe(`Employee`, () => {
+  it(`Should create an object that contains the name, id, and email properties`, () => {
+    const expectedResult = {
+      name: `John`,
+      id: 1,
+      email: `john01@gmail.com`,
+    };
+    expect(expectedResult).toEqual(sampleEmployee);
+  });
+});
 
-module.exports = Employee;
+describe(`getName()`, () => {
+  it(`Should retrieve the name value found in the Employee object`, () => {
+    expect(sampleEmployee.getName()).toEqual(`John`);
+  });
+});
+
+describe(`getId()`, () => {
+  it(`Should retrieve the id value found in the Employee object`, () => {
+    expect(sampleEmployee.getId()).toEqual(1);
+  });
+});
+
+describe(`getEmail()`, () => {
+  it(`Should retrieve the name value found in the Employee object`, () => {
+    expect(sampleEmployee.getEmail()).toEqual(`john01@gmail.com`);
+  });
+});
+
+describe(`getRole()`, () => {
+  it(`Should retrieve the role value found in the Employee object`, () => {
+    expect(sampleEmployee.getRole()).toEqual(`Employee`);
+  });
+});
