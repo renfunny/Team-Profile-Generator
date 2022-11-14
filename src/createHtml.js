@@ -6,17 +6,21 @@ function createHtml(team) {
           class="card text-bg-light mb-3"
           style="min-width: 18rem; max-width: 19rem; margin: 3rem"
         >
-          <div class="card-header">
+          <div class="card-header" style="font-size: 1.5rem;">
+          <strong>
             ${manager.name} <br />
-            ${manager.getRole()}
+            ${manager.getRole()} ☕
+            </strong>
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">ID: ${manager.id}</li>
-              <li class="list-group-item">Email: <a href="mailto:${
+              <li class="list-group-item"><strong>ID:</strong> ${
+                manager.id
+              }</li>
+              <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${
                 manager.email
               }">${manager.email}</a></li>
-              <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
+              <li class="list-group-item"><strong>Office number:</strong> ${manager.getOfficeNumber()}</li>
             </ul>
           </div>
         </div>
@@ -29,17 +33,19 @@ function createHtml(team) {
     class="card text-bg-light mb-3"
     style="min-width: 18rem; margin: 3rem"
   >
-    <div class="card-header">
+    <div class="card-header" style="font-size: 1.5rem;">
+    <strong>
       ${engineer.name} <br />
-      ${engineer.getRole()}
+      ${engineer.getRole()} 💻
+      </strong>
     </div>
     <div class="card-body">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${engineer.id}</li>
-        <li class="list-group-item">Email: <a href="mailto:${engineer.email}">${
-      engineer.email
-    }</a></li>
-        <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></li>
+        <li class="list-group-item"><strong>ID:</strong> ${engineer.id}</li>
+        <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${
+          engineer.email
+        }">${engineer.email}</a></li>
+        <li class="list-group-item"><strong>GitHub:</strong> <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></li>
       </ul>
     </div>
   </div>`;
@@ -51,17 +57,19 @@ function createHtml(team) {
     class="card text-bg-light mb-3"
     style="min-width: 18rem; margin: 3rem"
   >
-    <div class="card-header">
+    <div class="card-header" style="font-size: 1.5rem;">
+    <strong>
       ${intern.name} <br />
-      ${intern.getRole()}
+      ${intern.getRole()} 📚
+      </strong>
     </div>
     <div class="card-body">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">ID: ${intern.id}</li>
-        <li class="list-group-item">Email: <a href="mailto:${intern.email}">${
-      intern.email
-    }</a></li>
-        <li class="list-group-item">School: ${intern.getSchool()}</li>
+        <li class="list-group-item"><strong>ID:</strong> ${intern.id}</li>
+        <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${
+          intern.email
+        }">${intern.email}</a></li>
+        <li class="list-group-item"><strong>School:</strong> ${intern.getSchool()}</li>
       </ul>
     </div>
   </div>

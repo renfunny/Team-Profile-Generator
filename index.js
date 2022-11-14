@@ -83,7 +83,7 @@ function createTeam() {
       {
         type: `checkbox`,
         name: `menu`,
-        message: `Select the role you'd like to add to your team`,
+        message: `Select the role you'd like to add to your team (Select with Space, Submit with Enter)`,
         choices: [`engineer`, `intern`, `finish creating team`],
         validate: (userInput) => {
           if (userInput) {
@@ -98,7 +98,7 @@ function createTeam() {
       },
     ])
     .then((userInput) => {
-      console.log(userInput);
+      console.log(`Role Selected: ${userInput.menu[0]}`);
       if (userInput.menu[0] === `engineer`) {
         createEngineer();
       } else if (userInput.menu[0] === `intern`) {
