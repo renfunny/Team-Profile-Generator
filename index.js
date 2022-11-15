@@ -6,6 +6,8 @@ const Intern = require(`./lib/Intern`);
 const createHtml = require(`./src/createHtml`);
 const team = [];
 
+// Functions are numbered according to their order
+// 1. Creates a manager object using the Manager class and the data obtained from the user input
 function createManager() {
   return inquirer
     .prompt([
@@ -71,12 +73,14 @@ function createManager() {
         data.email,
         data.officeNumber
       );
+      // The manager object is pushed into the team array and the createTeam() function is called
       console.log(data);
       team.push(manager);
       createTeam();
     });
 }
 
+// 2. This is where the user gets to populate the team array with as many enineers and/or interns as needed
 function createTeam() {
   return inquirer
     .prompt([
@@ -98,7 +102,8 @@ function createTeam() {
       },
     ])
     .then((userInput) => {
-      console.log(`Role Selected: ${userInput.menu[0]}`);
+      // Based on the selection made by the user it will either call th createEngineer() function or the createIntern() function, if neither engineer or intern are selected then it calls the finishTeam() function
+      console.log(`Role Selected: ${userInput.menu}`);
       if (userInput.menu[0] === `engineer`) {
         createEngineer();
       } else if (userInput.menu[0] === `intern`) {
@@ -109,6 +114,7 @@ function createTeam() {
     });
 }
 
+// 3.a Here we create an engineer object that gets the data from the user input, and gets pushed into the team array, similar to the createManager() function
 function createEngineer() {
   console.log(
     `Please answer the following questions regarding the Engineer being added`
@@ -175,23 +181,14 @@ function createEngineer() {
         data.email,
         data.github
       );
+      // createTeam() is called again to go back and keep on populating the team array
       console.log(data);
       team.push(engineer);
       createTeam();
     });
 }
 
-function finishTeam() {
-  fs.writeFile(
-    __dirname + `/dist/index.html`,
-    createHtml(team),
-    function (err) {
-      if (err) throw err;
-      console.log(`Success!! HTML page has been created!`);
-    }
-  );
-}
-
+// 3.b Here we create an intern object which is pushed into the team array and calls the createTeam() function to keep on creating more objects
 function createIntern() {
   console.log(
     `Please answer the following questions regarding the Intern being added`
@@ -259,4 +256,15 @@ function createIntern() {
     });
 }
 
+// 3.c Once done, we create the html file inside the dist folder by calling the createHtml() function which holds the structure of the html page and gets populated by the data obtained in the team array of objects
+function finishTeam() {
+  fs.writeFile(
+    __dirname + `/dist/index.html`,
+    createHtml(team),
+    function (err) {
+      if (err) throw err;
+      console.log(`Success!! HTML page has been created!`);
+    }
+  );
+}
 createManager();

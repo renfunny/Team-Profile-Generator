@@ -1,4 +1,5 @@
 function createHtml(team) {
+  // Here we create individual cards that will be added to the html body, each card will be stored in the memberCards array
   const memberCards = [];
   function createManagerCard(manager) {
     let managerCard = `
@@ -8,18 +9,14 @@ function createHtml(team) {
         >
           <div class="card-header" style="font-size: 1.5rem;">
           <strong>
-            ${manager.name} <br />
+            ${manager.getName()} <br />
             ${manager.getRole()} ☕
             </strong>
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>ID:</strong> ${
-                manager.id
-              }</li>
-              <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${
-                manager.email
-              }">${manager.email}</a></li>
+              <li class="list-group-item"><strong>ID:</strong> ${manager.getId()}</li>
+              <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
               <li class="list-group-item"><strong>Office number:</strong> ${manager.getOfficeNumber()}</li>
             </ul>
           </div>
@@ -35,16 +32,14 @@ function createHtml(team) {
   >
     <div class="card-header" style="font-size: 1.5rem;">
     <strong>
-      ${engineer.name} <br />
+      ${engineer.getName()} <br />
       ${engineer.getRole()} 💻
       </strong>
     </div>
     <div class="card-body">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><strong>ID:</strong> ${engineer.id}</li>
-        <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${
-          engineer.email
-        }">${engineer.email}</a></li>
+        <li class="list-group-item"><strong>ID:</strong> ${engineer.getId()}</li>
+        <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
         <li class="list-group-item"><strong>GitHub:</strong> <a href="https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a></li>
       </ul>
     </div>
@@ -59,16 +54,14 @@ function createHtml(team) {
   >
     <div class="card-header" style="font-size: 1.5rem;">
     <strong>
-      ${intern.name} <br />
+      ${intern.getName()} <br />
       ${intern.getRole()} 📚
       </strong>
     </div>
     <div class="card-body">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><strong>ID:</strong> ${intern.id}</li>
-        <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${
-          intern.email
-        }">${intern.email}</a></li>
+        <li class="list-group-item"><strong>ID:</strong> ${intern.getId()}</li>
+        <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
         <li class="list-group-item"><strong>School:</strong> ${intern.getSchool()}</li>
       </ul>
     </div>
@@ -76,6 +69,7 @@ function createHtml(team) {
     `;
     memberCards.push(internCard);
   }
+  // here we loop through the team array of objects and get the role of each memeber, then we use that to create a card for each member which is stored in the memberCards array
   for (let i = 0; i < team.length; i++) {
     if (team[i].getRole() === `Manager`) {
       createManagerCard(team[i]);
@@ -87,6 +81,7 @@ function createHtml(team) {
       createInternCard(team[i]);
     }
   }
+  // here we return the html and we add all the cards in the memberCards array by joining them together
   return `<!DOCTYPE html>
   <html lang="en">
     <head>
